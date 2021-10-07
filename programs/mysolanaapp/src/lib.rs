@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("2AdfGaJL1XcdRRffyPZ5XkeyboegxSWnKdyQgMYkW2of");
 
 #[program]
 pub mod mysolanaapp {
@@ -15,6 +15,11 @@ pub mod mysolanaapp {
         Ok(())
     }
 
+    pub fn increment(ctx: Context<Increment>) -> ProgramResult {
+        let base_account = &mut ctx.accounts.base_account;
+        base_account.count += 1;
+        Ok(())
+    }
 }
 
 #[derive(Accounts)]
@@ -27,6 +32,12 @@ pub struct Create<'info> {
     #[account(mut)]
     pub user: Signer<'info>,
     pub system_program: Program<'info, System>,
+}
+
+#[derive(Accounts)]
+pub struct Increment<'info> {
+    #[account(mut)]
+    pub base_account: Account<'info, BaseAccount>,
 }
 
 #[account]
