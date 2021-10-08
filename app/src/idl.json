@@ -4,11 +4,6 @@
   "instructions": [
     {
       "name": "initialize",
-      "accounts": [],
-      "args": []
-    },
-    {
-      "name": "create",
       "accounts": [
         {
           "name": "baseAccount",
@@ -26,10 +21,15 @@
           "isSigner": false
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "data",
+          "type": "string"
+        }
+      ]
     },
     {
-      "name": "increment",
+      "name": "update",
       "accounts": [
         {
           "name": "baseAccount",
@@ -37,7 +37,12 @@
           "isSigner": false
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "data",
+          "type": "string"
+        }
+      ]
     }
   ],
   "accounts": [
@@ -49,6 +54,16 @@
           {
             "name": "count",
             "type": "u64"
+          },
+          {
+            "name": "data",
+            "type": "string"
+          },
+          {
+            "name": "dataList",
+            "type": {
+              "vec": "string"
+            }
           }
         ]
       }
